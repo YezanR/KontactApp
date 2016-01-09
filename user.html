@@ -1,0 +1,81 @@
+<html class="no-js" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Home</title>
+  <!-- Material design fonts -->
+  <link rel="stylesheet" href="dist/css/roboto-font.css" type="text/css">
+  <link rel="stylesheet" href="dist/css/material-icons.css" type="text/css">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="dist/css/roboto.min.css" rel="stylesheet">
+  <link href="dist/css/material-fullpalette.min.css" rel="stylesheet">
+  <link href="dist/css/ripples.min.css" rel="stylesheet">
+  <link href="dist/css/snackbar.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body ng-controller="UserCtrl as user">
+  <div  ng-controller="ItemCtrl" ng-include="'parts/user_form.html'"></div>
+  <div class="container-fluid">
+    <div ng-controller="ItemCtrl" ng-init="ctrlData.currentTab='user'" ng-include="'menu.html'"></div>
+    <div class="bs-docs-section clearfix" >
+      <div class="container">
+        <table class="table  table-hover">
+          <thead>
+            <tr>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Group</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody ng-controller="GroupCtrl">
+            <tr ng-repeat="it in usrData.list" data-toggle="modal" data-target="#simple-dialog" ng-init="ctrlData.mode='Edit'" ng-click="setUser(it)" >
+              <td>{{ it.firstName }}</td>
+              <td>{{ it.lastName }}</td>
+              <td>
+                <div ng-switch on="it.parentId.length">
+                  <div ng-switch-when="0">
+                    <span><strong>N/A</strong></span>
+                  </div>
+                  <div ng-switch-default>
+                    <span ng-repeat="grpId in it.parentId" class="badge">{{ get(grpId).name }}</span>
+                  </div>
+                </div>
+
+              </td>
+              <td ng-click="deleteItem(it)"><i class="material-icons btn-remove">close</i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <span class="btn btn-danger btn-fab" data-toggle="modal" data-target="#simple-dialog" ng-click="newUser()" style="position:fixed; right: 20px; bottom:32px;"><i class="material-icons" style="top:0px;">add</i></span>
+    </div>
+
+    <!-- <script src="database/data.json"></script> -->
+
+
+    <script src="dist/js/jquery.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="dist/js/ripples.min.js"></script>
+    <script src="dist/js/material.min.js"></script>
+    <script src="dist/js/snackbar.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/module/app.js"></script>
+    <script src="js/module/utils.js"></script>
+    <script src="js/module/model/itemService.js"></script>
+    <script src="js/module/controller/itemCtrl.js"></script>
+    <script src="js/module/model/Item.js"></script>
+    <script type="text/javascript">
+    jQuery('table-hover').hover(function () {
+      jQuery(this).addClass('hover');
+    }, function () {
+      jQuery(this).removeClass('hover');
+    });
+    </script>
+  </body>

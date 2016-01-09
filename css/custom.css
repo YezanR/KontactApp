@@ -1,0 +1,10 @@
+.btn-remove
+{
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.table-hover:hover .btn-remove
+{
+  visibility: visible;
+}
