@@ -18,7 +18,7 @@
 
 <body ng-controller="ItemCtrl">
   <div class="container-fluid" >
-    <div  ng-include="'menu.html'"></div>
+    <div ng-init="ctrlData.currentTab='home'" ng-include="'menu.html'"></div>
     <div class="bs-docs-section clearfix">
       <div class="container">
         <div ng-repeat="item  in filteredItems" ng-if="$index % 3 == 0"  class="row">

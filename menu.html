@@ -10,10 +10,13 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home.html">Brand</a>
+            <a class="navbar-brand" href="home.html" >Kontact App</a>
           </div>
           <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
+              <li  ng-class="{'active': ctrlData.currentTab == 'home'}">
+                <a href="home.html">Home</a>
+              </li>
               <li  ng-class="{'active': ctrlData.currentTab == 'user'}">
                 <a href="user.html">User</a>
               </li>
@@ -22,7 +25,7 @@
               </li>
             </ul>
             <form class="navbar-form navbar-left" style="width: 75%">
-              <input type="text" class="form-control" ng-model="ctrlData.filter" style="width: 100%" placeholder="Search">
+              <input ng-if="ctrlData.currentTab != 'user' && ctrlData.currentTab != 'group'" type="text" class="form-control" ng-model="ctrlData.filter" style="width: 100%" placeholder="Search">
             </form>
             <ul class="nav navbar-nav navbar-right">
 

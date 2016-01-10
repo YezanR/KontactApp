@@ -2,17 +2,17 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <button type="button" class="close" onclick="closeModal()" aria-hidden="true">×</button>
         <h4 class="modal-title">{{ ctrlData.mode }} {{ ctrlData.currentTab }}</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal">
           <fieldset>
             <div class="form-group is-empty">
-              <label for="firstName" class="col-md-2 control-label">First name</label>
+              <label for="firstName"  class="col-md-2 control-label">First name</label>
 
               <div class="col-md-10">
-                <input type="text"  class="form-control" id="firsName" ng-model="usrData.user.firstName"  placeholder="First name" >
+                <input  type="text" required class="form-control" id="firsName" ng-model="usrData.user.firstName"  placeholder="First name" >
               </div>
               <span class="material-input"></span>
             </div>
@@ -20,39 +20,43 @@
               <label for="lastName"  class="col-md-2 control-label">Last name</label>
 
               <div class="col-md-10">
-                <input type="text"  class="form-control" id="lastName" placeholder="Last name" ng-model="usrData.user.lastName">
+                <input type="text" required  class="form-control" id="lastName" placeholder="Last name" ng-model="usrData.user.lastName">
               </div>
               <span class="material-input"></span>
             </div>
             <div class="form-group is-empty">
               <label for="userEmail" class="col-md-2 control-label">Email</label>
               <div class="col-md-10">
-                <input type="email"  class="form-control" id="userEmail" placeholder="Email" ng-model="usrData.user.email">
+                <input type="email"  required class="form-control" id="userEmail" placeholder="Email" ng-model="usrData.user.email">
               </div>
               <span class="material-input"></span>
             </div>
             <div class="form-group is-empty">
               <label for="telephone" class="col-md-2 control-label">Telephone</label>
               <div class="col-md-10">
-                <input type="tel"  class="form-control" id="telphone" placeholder="Telephone" ng-model="usrData.user.tel">
+                <input type="tel"  class="form-control" id="telephone" placeholder="Telephone" ng-model="usrData.user.tel">
               </div>
               <span class="material-input"></span>
             </div>
             <div class="form-group is-empty">
               <label for="telephone" class="col-md-2 control-label">Group</label>
               <div class="col-md-10">
-                <select ng-controller="GroupCtrl" ng-model="usrData.user.parentId[0]">
+                <!-- <select ng-controller="GroupCtrl" ng-model="usrData.user.parentId[0]">
                   <option  ng-repeat="grp in grpData.list" value="{{grp.iid}}">{{ grp.name}}</option>
+                </select> -->
+                <select ng-controller="GroupCtrl" ng-model="usrData.user.parentId" id="select222" multiple="" class="form-control">
+                    <option  ng-repeat="grp in grpData.list" value="{{grp.iid}}">{{ grp.name}}</option>
                 </select>
+
               </div>
               <span class="material-input"></span>
             </div>
           </fieldset>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" ng-click="user.saveItem(usrData.user);" data-dismiss="modal">Save changes</button>
+            </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" ng-click="user.saveItem(usrData.user)" data-dismiss="modal">Save changes</button>
       </div>
     </div>
   </div>

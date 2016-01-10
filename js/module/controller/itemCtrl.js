@@ -32,11 +32,14 @@
     this.saveItem =  function(item)
 		{
       console.log("in save item");
-			Items.save(item);
-      // Observer Pattern appears here
-      // ItemCtrl notify other observers that list has been changed
-      //$scope.$emit("ItemListChanged");
-      notify("ItemListChanged");
+      if ( item != undefined )
+      {
+          Items.save(item);
+          // Observer Pattern appears here
+          // ItemCtrl notify other observers that list has been changed
+          //$scope.$emit("ItemListChanged");
+          notify("ItemListChanged");
+      }
 		}
 
     $scope.deleteItem = function(item)
@@ -210,6 +213,12 @@
       console.log("set Group");
       $scope.grpData.group = angular.copy(group);
     };
+
+    $scope.newGroup = function(name, email)
+    {
+      console.log("in new Group");
+      $scope.grpData.group = Items.createGroup(name, email);
+    }
 
     $scope.$on("ItemListChanged", updateList);
   }

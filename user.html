@@ -21,8 +21,8 @@
 </head>
 <body ng-controller="UserCtrl as user">
   <div  ng-controller="ItemCtrl" ng-include="'parts/user_form.html'"></div>
-  <div class="container-fluid">
-    <div ng-controller="ItemCtrl" ng-init="ctrlData.currentTab='user'" ng-include="'menu.html'"></div>
+  <div class="container-fluid" >
+    <div ng-controller="ItemCtrl"  ng-init="ctrlData.currentTab='user'" ng-include="'menu.html'"></div>
     <div class="bs-docs-section clearfix" >
       <div class="container">
         <table class="table  table-hover">
@@ -35,16 +35,16 @@
             </tr>
           </thead>
           <tbody ng-controller="GroupCtrl">
-            <tr ng-repeat="it in usrData.list" data-toggle="modal" data-target="#simple-dialog" ng-init="ctrlData.mode='Edit'" ng-click="setUser(it)" >
-              <td>{{ it.firstName }}</td>
-              <td>{{ it.lastName }}</td>
+            <tr  ng-repeat="it in usrData.list"  ng-init="ctrlData.mode='Edit'" ng-click="setUser(it)" >
+              <td onclick="showModal()" >{{ it.firstName }}</td>
+              <td onclick="showModal()">{{ it.lastName }}</td>
               <td>
                 <div ng-switch on="it.parentId.length">
                   <div ng-switch-when="0">
                     <span><strong>N/A</strong></span>
                   </div>
                   <div ng-switch-default>
-                    <span ng-repeat="grpId in it.parentId" class="badge">{{ get(grpId).name }}</span>
+                    <span style="margin-left: 6px;" ng-repeat="grpId in it.parentId" class="badge">{{ get(grpId).name }}</span>
                   </div>
                 </div>
 
@@ -54,7 +54,7 @@
           </tbody>
         </table>
       </div>
-      <span class="btn btn-danger btn-fab" data-toggle="modal" data-target="#simple-dialog" ng-click="newUser()" style="position:fixed; right: 20px; bottom:32px;"><i class="material-icons" style="top:0px;">add</i></span>
+      <span  class="btn btn-danger btn-fab" data-toggle="modal" data-target="#simple-dialog" ng-click="newUser()" style="position:fixed; right: 20px; bottom:32px;"><i class="material-icons" style="top:0px;">add</i></span>
     </div>
 
     <!-- <script src="database/data.json"></script> -->
@@ -78,4 +78,18 @@
       jQuery(this).removeClass('hover');
     });
     </script>
+
+    <script type="text/javascript">
+      function showModal(){
+          $('#simple-dialog').modal('show');
+      };
+
+      function closeModal(){
+
+          $('#simple-dialog').modal('hide');
+      }
+    </script>
+    <script src="js/module/validator.js"></script>
+
+
   </body>
